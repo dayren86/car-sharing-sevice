@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-test-data
+      author: andrey
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column: {name: role_name, value: "MANAGER"}
+        - insert:
+            tableName: roles
+            columns:
+              - column: { name: role_name, value: "CUSTOMER" }
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: password, value: "$2a$10$et34ycySw9IMFsU8UBkbYuuKaIXgs5ob/Amc8G3vYJ5useIpnLxJu"}
+              - column: {name: first_name, value: "bob"}
+              - column: {name: last_name, value: "bob"}
+        - insert:
+            tableName: users
+            columns:
+              - column: { name: password, value: "$2a$10$et34ycySw9IMFsU8UBkbYuuKaIXgs5ob/Amc8G3vYJ5useIpnLxJu" }
+              - column: { name: first_name, value: "ned" }
+              - column: { name: last_name, value: "ned" }
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, value: "1" }
+              - column: { name: role_id, value: "1" }
+        - insert:
+            tableName: users_roles
+            columns:
+              - column: { name: user_id, value: "2" }
+              - column: { name: role_id, value: "2" }
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: brand, value: "Skoda" }
+              - column: { name: model, value: "Karoq" }
+              - column: { name: inventory, value: "5" }
+              - column: { name: type_car, value: "SUV" }
+              - column: { name: daily_fee, value: "30.50" }
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: brand, value: "Audi" }
+              - column: { name: model, value: "A6" }
+              - column: { name: inventory, value: "2" }
+              - column: { name: type_car, value: "SEDAN" }
+              - column: { name: daily_fee, value: "50.00" }
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: brand, value: "Volkswagen" }
+              - column: { name: model, value: "Golf" }
+              - column: { name: inventory, value: "4" }
+              - column: { name: type_car, value: "HATCHBACK" }
+              - column: { name: daily_fee, value: "25.00" }
+        - insert:
+            tableName: cars
+            columns:
+              - column: { name: brand, value: "Seat" }
+              - column: { name: model, value: "Leon" }
+              - column: { name: inventory, value: "3" }
+              - column: { name: type_car, value: "UNIVERSAL" }
+              - column: { name: daily_fee, value: "29.00" }

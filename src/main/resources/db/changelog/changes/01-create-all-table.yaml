@@ -1,0 +1,202 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-all-table
+      author: andrey
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: telegram_id
+                  type: bigint
+                  constraints:
+                    unique: true
+              - column:
+                  name: is_deleted
+                  type: bit
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: cars
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: model
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brand
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: inventory
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: daily_fee
+                  type: decimal(10, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_car
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: bit
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: rentals
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: rental_date
+                  type: datetime
+              - column:
+                  name: return_date
+                  type: datetime
+              - column:
+                  name: actual_return_date
+                  type: datetime
+              - column:
+                  name: last_notification_sent
+                  type: datetime
+              - column:
+                  name: is_active
+                  type: bit
+                  defaultValueBoolean: true
+                  constraints:
+                    nullable: false
+              - column:
+                  name: car_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_car_id
+                    references: cars(id)
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_user_id
+                    references: users(id)
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: bit
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: rentals_id
+                    references: rentals(id)
+              - column:
+                  name: payment_status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: payment_type
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: session_url
+                  type: varchar(1000)
+              - column:
+                  name: session_id
+                  type: varchar(255)
+              - column:
+                  name: end_session
+                  type: datetime
+              - column:
+                  name: amount_to_pay
+                  type: decimal(10, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: bit
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role_name
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+        - createTable:
+            tableName: users_roles
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_users_id
+                    references: users(id)
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_roles_id
+                    references: roles(id)

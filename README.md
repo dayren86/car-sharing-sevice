@@ -1,7 +1,6 @@
 
 # Car Sharing Service
-
-A program for buying books. To use the program, you must first register and log in. You will have a shopping cart where you can add books and specify the quantity. You can also complete your purchase, view the total cost, and enter a shipping address.
+This car rental app lets you select a car from a list and specify the number of days you want to rent. Upon return, you'll receive a payment link with the total rental amount. The app also checks for missed rentals and payments and sends notifications via a Telegram bot.
 
 ---
 ## Tech Stack
@@ -15,6 +14,7 @@ A program for buying books. To use the program, you must first register and log 
 - **Telegram bots 9.5.0**
 - **Stripe 32.1.0**
 ---
+
 ## API Reference
 **After launching the application, you can view all endpoints at the link**\
 http://localhost:8080/swagger-ui/index.html

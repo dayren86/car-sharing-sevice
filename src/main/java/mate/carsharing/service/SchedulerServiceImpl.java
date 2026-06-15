@@ -10,20 +10,18 @@ import org.springframework.stereotype.Component;
 @Component
 @EnableScheduling
 @RequiredArgsConstructor
-public class SchedulerServiceImpl implements SchedulerService {
+public class SchedulerServiceImpl {
     @Value("${rental.scheduler.message.repeat}")
     private int messageRepeatingHours;
     private final PaymentService paymentService;
     private final RentalService rentalService;
 
     @Scheduled(fixedDelayString = "${payment.scheduler.interval}")
-    @Override
     public void checkOverduePayment() {
         paymentService.checkOverduePayments();
     }
 
     @Scheduled(fixedDelayString = "${rental.scheduler.interval}")
-    @Override
     public void checkOverdueRentals() {
         rentalService.checkOverdueRentals(LocalDateTime.now(), messageRepeatingHours);
     }

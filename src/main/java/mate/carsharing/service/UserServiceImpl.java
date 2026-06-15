@@ -1,5 +1,6 @@
 package mate.carsharing.service;
 
+import jakarta.transaction.Transactional;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
